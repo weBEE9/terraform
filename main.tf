@@ -32,7 +32,21 @@ resource "azurerm_resource_group" "rg" {
   # for more azure provider options
   name     = "learn-terraform-resource-group"
   location = "southeastasia"
+  tags = {
+    Enviornment="Terraform Getting Started"
+    Team="weBEE9"
+  }
 }
+
+# create new resource
+# virtual network
+resource "azurerm_virtual_network" "vnet" {
+  name                = "learn-terraform-vnet"
+  address_space       = ["10.0.0.0/16"]
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+}
+
 
 # terraform init
 # terraform fmt, format the configuration.
